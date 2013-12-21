@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<title>time-selector</title>
+		<script type="text/javascript" src="jquery-1.10.2.js"></script>
+		<script type="text/javascript">
+			
+			function initialTime(begin, step){
+				var now = begin;
+				var content = "";
+				while(now<=24){
+					content += '<option value="'+now+':00">'+now+':00</option>'
+					now++;
+				}
+				return content;
+			}
+
+			
+			$(document).ready(function(){
+				console.log("begin");
+				$("#time1").append(initialTime(1));
+				$("#time2").append(initialTime(2));
+
+				$("#time1").change(function(){
+					var start = $("#time1").val();
+					start = start.substring(0, start.length-3);
+					console.log(start);
+					$("#time2").empty();
+					$("#time2").append(initialTime(Number(start)+1));
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<select id='time1'></select>
+		<select id='time2'></select>
+	</body>
+</html>
